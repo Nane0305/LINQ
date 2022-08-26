@@ -22,8 +22,8 @@ namespace LINQ
                 Console.WriteLine();    
             }
             
-            Console.WriteLine(pos);
-            Console.WriteLine(pos2);
+            Console.WriteLine($"The first positiv element: {pos}");
+            Console.WriteLine($"The last negativ element: {pos2}");
         }
     }
 }
