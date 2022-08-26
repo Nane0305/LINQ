@@ -1,7 +1,4 @@
-﻿
-using System;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
+﻿using System.Linq;
 
 namespace LINQ
 {
@@ -9,26 +6,24 @@ namespace LINQ
     {
         static void Main(string[] args)
         {
-            Car[] cars = new Car[]
+            int[] arrayInt = { 1, -2, 3, 5, -8 };
+
+            var query = from i in arrayInt group i by i < 0 into res select res;
+            var pos = query.AsEnumerable().Where(i => i.Key == false).First().First();
+            var pos2 = query.AsEnumerable().Where(i => i.Key == true).Last().Last();
+
+            Console.WriteLine("The array: ");
+            foreach (var item in query)
             {
-                new Car("Audi", 2005, 5000),
-                new Car("BMW", 1999, 3000),
-                new Car("Toyota", 2020, 304004),
-                new Car("Mercedes", 2020, 4454545),
-                new Car("Nisan", 2012, 12000),
-                new Car("ZAZ", 2006, 8056)
-            };
-            var qwery = from car in cars
-                        group car by car.Year > 2010;
-            foreach (var item in qwery)
-            {
-                Console.Write($"Key: {item.Key}\nValue:");
-                foreach (Car item2 in item)
+                foreach (var elem in item)
                 {
-                    Console.Write($"\t{item2}");
+                    Console.Write($"{elem}\t");
                 }
-                Console.WriteLine();
+                Console.WriteLine();    
             }
+            
+            Console.WriteLine(pos);
+            Console.WriteLine(pos2);
         }
     }
 }
